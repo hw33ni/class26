@@ -72,13 +72,13 @@ static int cb(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg, struct nfq_data *
 		int iplen = ipHdr->header_length*4;
 		TcpHdr* tcpHdr = (TcpHdr*) (data + iplen);
 		
-		printf("clear1\ndest 0x80 check?\t");
-		int s1 = ntohs(tcpHdr->source);
-		int s2 = ntohs(tcpHdr->dest);
-		if(ntohs(tcpHdr->dest) != 80 && ntohs(tcpHdr->source) != 80) goto RET; // dport not 80!
+		printf("clear1\nport 80 check?\t\t");
+		int src = ntohs(tcpHdr->source);
+		int dst = ntohs(tcpHdr->dest);
+		if(src != 80 && dst != 80) goto RET; // neither port is 80!
 		
 		printf("clear2\nhttp check?\t\t");
-		if(tlen - iplen == (tcpHdr->doff)*4) goto RET; // no http!
+		if(tlen - iplen == (tcpHdr->doff)*4) goto RET; // no other info!
 
 		unsigned char* httpHdr = data + iplen + (tcpHdr->doff)*4;
 
