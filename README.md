@@ -20,6 +20,5 @@ netfilter 예제에서 nfq_get_payload 이후 패킷의 시작 위치와 패킷�
 
  
 # result
-  
-![nftest1](https://user-images.githubusercontent.com/86241174/139691840-b03264b2-9edd-4be4-a30e-feb5fba9bc2e.JPG)
+![image](https://user-images.githubusercontent.com/86241174/139692246-6a689e24-e6eb-4443-8668-8f02f3dbcb5d.png)
 ![nftest2](https://user-images.githubusercontent.com/86241174/139691860-74706675-2be7-472f-8676-27ed1a1e5c25.JPG)
