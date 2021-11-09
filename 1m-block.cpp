@@ -51,26 +51,33 @@ bool ck_db(char* hostadr)
 	sqlite3_stmt* res;
 
 	int rc = sqlite3_open(dbname, &db);
+	int rc2;
 	if(rc != SQLITE_OK){
 		 fprintf(stderr, "db open error\n");
 		 sqlite3_close(db);
-		 return false;
+		 goto FALSE;
 	}
 
 	rc = sqlite3_prepare_v2(db, "SELECT * FROM urls WHERE url LIKE ?;", -1, &res, 0);
 	if(rc != SQLITE_OK){
 		 fprintf(stderr, "db query error\n");
 		 sqlite3_close(db);
-		 return false;
+		 goto FALSE;
 	} else sqlite3_bind_text(res, 1, hostadr, strlen(hostadr), SQLITE_STATIC);
 
-	int rc2 = sqlite3_step(res);
-	if(rc2 == SQLITE_ROW){
+	rc2 = sqlite3_step(res);
+	if(rc2 == SQLITE_ROW){ // url exist
 		printf("exist!\n%d : [%s]\n", sqlite3_column_int(res, 0), sqlite3_column_text(res, 1));
-	} else return false;
+		goto TRUE;
+	} else goto FALSE;
+
+	//terminate
 	sqlite3_finalize(res);
 	sqlite3_close(db);
 	
+	FALSE:
+	return false;
+	TRUE:
 	return true;
 }
 
