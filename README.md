@@ -9,7 +9,7 @@
 
 
 ## question
-ocsp.pki.goog, ocsp.godaddy.com, ocsp.digicert.com 같이 ocsp를 이용한 경우 block이 정상적으로 이루어지지 않는 점 수정중
+ocsp.pki.goog, ocsp.godaddy.com, ocsp.digicert.com 같이 ocsp를 이용한 경우 block이 정상적으로 이루어지지 않는 점 수정중 => https 처리를 잘못했습니다..ㅎ
 
 ## comment
 iptable command makefile에 넣어서 저번과 같은 참사(..) 막음
