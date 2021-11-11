@@ -14,3 +14,7 @@ ocsp.pki.goog, ocsp.godaddy.com, ocsp.digicert.com 같이 ocsp를 이용한 경�
 ## comment
 iptable command makefile에 넣어서 저번과 같은 참사(..) 막음
 sqlite3 공부만 엄청한듯
+
+### 20211111 fix
+firefox에서 hsts 옵션을 제거하여 안되던 사이트들을 block 성공함
+![image](https://user-images.githubusercontent.com/86241174/141252563-a7f99595-3d86-441d-a7ca-107c9bb7afec.png)
