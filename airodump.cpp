@@ -7,8 +7,6 @@
 
 using namespace std;
 
-map<string, pair<int, string>> m;
-
 void usage() {
         printf("syntax : airodump <interface>\n");
         printf("sample : airodump mon0\n");
@@ -51,7 +49,10 @@ int main(int argc, char* argv[]) {
 
         string essid = string(taggedFrame->essid, taggedFrame->len);
 
-        if(info.find((string)bssid) == info.end()) info[(string)bssid]  = {1, essid};
+        if(info.find((string)bssid) == info.end()) {
+
+            info[(string)bssid]  = {1, essid};
+        }
         else info[(string)bssid].first++;
 
         printf("BSSID\t\t\t BEACONS\t\tESSID\n");
