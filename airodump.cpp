@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <iostream>
+#include <iomanip>
 #include <pcap.h>
 #include <netinet/in.h>
 #include <map>
@@ -8,8 +9,8 @@
 using namespace std;
 
 void usage() {
-        printf("syntax : airodump <interface>\n");
-        printf("sample : airodump mon0\n");
+        cout << "syntax : airodump <interface>\n";
+        cout << "sample : airodump mon0\n";
 }
 
 map<string, pair<int, string>> info;
@@ -55,11 +56,12 @@ int main(int argc, char* argv[]) {
         }
         else info[(string)bssid].first++;
 
-        printf("BSSID\t\t\t BEACONS\t\tESSID\n");
-        for(const auto iter:info){
-            printf("%s    %d        %s\n", iter.first.c_str(), iter.second.first, iter.second.second.c_str());
-        }
         system("clear");
+
+        cout << left << setw(20) << "BSSID" << setw(10) << "BEACONS" << setw(40) << "ESSID" << endl;
+        for(auto iter:info){
+            cout << setw(20) << left << iter.first << setw(10) << left << iter.second.first << setw(40) << left << iter.second.second;
+        }
 
     }
     pcap_close(handle);
